@@ -1,0 +1,545 @@
+好的，我已根據您的要求，修改了圖片名稱和第三段的格式，重新產生單一互動式網頁的 HTML 檔案，主題為「**地球公轉現象**」。
+
+請直接下載以下內容，並將檔名存為 `earth_revolution_learning_v2.html`。
+
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙的浩瀚_學習頁面_地球公轉現象</title>
+    <style>
+        /* 全局樣式 */
+        body {
+            font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 標題樣式 */
+        h1 {
+            color: #1a5276;
+            text-align: center;
+            border-bottom: 4px double #5dade2;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        h2 {
+            color: #5dade2;
+            margin-top: 40px;
+            padding-left: 15px;
+            border-left: 5px solid #5dade2;
+            font-size: 1.5em;
+        }
+
+        /* 關鍵字顏色 */
+        .keyword1 { color: #e74c3c; font-weight: bold; } /* 紅色 - 公轉方向/時間 */
+        .keyword2 { color: #27ae60; font-weight: bold; } /* 綠色 - 軸傾角/夾角 */
+        .keyword3 { color: #f39c12; font-weight: bold; } /* 橘色 - 直射/集中/夏 */
+        .keyword4 { color: #9b59b6; font-weight: bold; } /* 紫色 - 斜射/分散/冬 */
+
+        /* 內容區塊和圖片排版 */
+        .lesson-block {
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+        }
+        .content-with-image {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .text-content {
+            flex: 2;
+        }
+        .image-side {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-left: 2px dashed #ccc;
+        }
+
+        /* 圖片容器樣式 */
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+        .image-container .image-item {
+            flex: 1;
+            max-width: 48%;
+        }
+        .image-container img, .image-side img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            min-height: 150px; /* 確保佔位符可見 */
+            background-color: #f0f0f0;
+        }
+        .image-container p, .image-side p {
+            font-size: 0.9em;
+            color: #555;
+            margin: 5px 0 0;
+        }
+
+        /* 練習題樣式 */
+        .quiz-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #b0c4de;
+        }
+        .question-block {
+            background-color: #ecf4f9;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .question-block p {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #1a5276;
+        }
+        .options-group label {
+            display: block;
+            margin: 12px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .options-group label:hover {
+            background-color: #eaf4fd;
+            border-color: #a9d4f9;
+        }
+        .options-group input[type="radio"],
+        .options-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .input-group input[type="text"], .input-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+
+        /* 按鈕樣式 */
+        .btn-check, .btn-retry {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .btn-check {
+            background-color: #5dade2;
+            color: white;
+            font-size: 1em;
+        }
+        .btn-check:disabled {
+            background-color: #bbd7e5;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        .btn-retry {
+            background-color: #e67e22;
+            color: white;
+            display: none; /* 初始隱藏 */
+            margin-left: 10px;
+            font-size: 1em;
+        }
+
+        /* 回饋區塊樣式 */
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* 初始隱藏 */
+            font-size: 1.1em;
+        }
+        .correct {
+            border: 3px solid #27ae60; /* 綠框 */
+            background-color: #e9f5e9; /* 綠底 */
+            color: #27ae60;
+        }
+        .incorrect {
+            border: 3px solid #e74c3c; /* 紅框 */
+            background-color: #fcecec; /* 紅底 */
+            color: #e74c3c;
+        }
+
+        /* 導覽列樣式 */
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #1a5276;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover:not(.disabled) {
+            background-color: #154360;
+        }
+        .nav-btn.disabled {
+            background-color: #aeb6bf;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔭 宇宙的浩瀚：地球公轉現象學習頁面</h1>
+
+        <div class="lesson-block">
+            <h2>🔄 地球公轉方向與傾角</h2>
+            <p>
+                地球除了自轉外，同時也以<span class="keyword1">逆時鐘方向</span>繞著太陽<span class="keyword1">公轉</span>，
+                地球公轉一周的時間即為<span class="keyword1">一年</span>。
+                地球<span class="keyword2">自轉軸傾斜23.5度</span>，故地球赤道面與公轉軌道面有一<span class="keyword2">23.5度</span>的夾角。
+            </p>
+            <div class="image-container">
+                <div class="image-item">
+                    <img src="4.png" alt="地球自轉軸傾角示意圖 (23.5度)">
+                    <p>圖4：自轉軸傾角 (檔名: 4.png)</p>
+                </div>
+                <div class="image-item">
+                    <img src="5.png" alt="地球繞太陽公轉示意圖">
+                    <p>圖5：地球公轉方向與陽光照射 (檔名: 5.png)</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="lesson-block">
+            <h2>☀️ 一年四季的成因</h2>
+            <div class="content-with-image">
+                <div class="text-content">
+                    <p>
+                        相同光源<span class="keyword3">直射</span>與<span class="keyword4">斜射</span>所產生的亮光面積不同。
+                        <span class="keyword3">直射地區</span>能量較<span class="keyword3">集中</span>，使地表溫度較高，當地為<span class="keyword3">夏季氣候</span>；
+                        而<span class="keyword4">斜射地區</span>能量較<span class="keyword4">分散</span>，使地表溫度較低，當地為<span class="keyword4">冬季氣候</span>。
+                    </p>
+                </div>
+                <div class="image-side">
+                    <img src="6.png" alt="直射與斜射光線對地表能量集中度的影響">
+                    <p>圖6：直射與斜射影響 (檔名: 6.png)</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="lesson-block">
+            <h2>🌅 嘉義觀測：四季太陽軌跡</h2>
+            <div class="content-with-image">
+                <div class="text-content">
+                    <p>
+                        每日太陽於空中的運行軌跡也不相同，但每年都有規律性的變化。
+                    </p>
+                    <ul>
+                        <li><span class="keyword2">春分秋分</span>時，太陽由正東升、正西落，中午太陽在頭頂上方偏南處。</li>
+                        <li><span class="keyword3">夏至</span>時，太陽升起在東偏北，中午在頭頂上方最高，落下於西偏北。</li>
+                        <li><span class="keyword4">冬至</span>時，太陽升起在東偏南，中午在頭頂上方偏南方較低處，落下於西偏南。</li>
+                    </ul>
+                </div>
+                <div class="image-side">
+                    <img src="7.png" alt="嘉義地區四季太陽運行軌跡圖">
+                    <p>圖7：太陽運行軌跡 (檔名: 7.png)</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="quiz-section">
+            <h2>🧠 互動練習題</h2>
+            <p>請完成以下所有題目，以解鎖下一頁。</p>
+
+            <div class="question-block" data-qid="1">
+                <p>Q1. 地球公轉一周的時間是多久？</p>
+                <div class="options-group">
+                    <label><input type="radio" name="q1" value="A"> 一日</label>
+                    <label><input type="radio" name="q1" value="B"> 一月</label>
+                    <label><input type="radio" name="q1" value="C"> 一年</label>
+                    <label><input type="radio" name="q1" value="D"> 一世紀</label>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+                <button class="btn-check" data-qid="1">檢查答案</button>
+                <button class="btn-retry" data-qid="1">重做本題</button>
+            </div>
+
+            <div class="question-block" data-qid="2">
+                <p>Q2. 地球的自轉軸與公轉軌道面夾角約為多少度？ (請填入數字)</p>
+                <div class="input-group">
+                    <input type="text" name="q2" placeholder="請填入數字，例如: 23.5">
+                </div>
+                <div class="feedback" id="feedback2"></div>
+                <button class="btn-check" data-qid="2">檢查答案</button>
+                <button class="btn-retry" data-qid="2">重做本題</button>
+            </div>
+
+            <div class="question-block" data-qid="3">
+                <p>Q3. 在冬季氣候的地區，陽光是以「斜射」的方式照射地表，使得能量分散，溫度較低。</p>
+                <div class="options-group">
+                    <label><input type="radio" name="q3" value="A"> 正確</label>
+                    <label><input type="radio" name="q3" value="B"> 錯誤</label>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+                <button class="btn-check" data-qid="3">檢查答案</button>
+                <button class="btn-retry" data-qid="3">重做本題</button>
+            </div>
+
+            <div class="question-block" data-qid="4">
+                <p>Q4. 在**冬至**時，嘉義觀測到的日落方向為：</p>
+                <div class="input-group">
+                    <select name="q4">
+                        <option value="">請選擇方向</option>
+                        <option value="A">西偏北</option>
+                        <option value="B">正西</option>
+                        <option value="C">西偏南</option>
+                        <option value="D">正南</option>
+                    </select>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+                <button class="btn-check" data-qid="4">檢查答案</button>
+                <button class="btn-retry" data-qid="4">重做本題</button>
+            </div>
+
+        </div>
+
+        <div class="navigation">
+            <a href="1.html" class="nav-btn">← 上一頁</a>
+            <a href="./3.html" class="nav-btn disabled" id="next-page-btn">下一頁 →</a>
+        </div>
+    </div>
+
+    <script>
+        // 題目的正確答案配置
+        const answers = {
+            1: 'C', // Q1: 單選 (一年)
+            2: '23.5', // Q2: 填空 (23.5)
+            3: 'A', // Q3: 是非 (正確，冬季是斜射)
+            4: 'C' // Q4: 下拉選單 (西偏南)
+        };
+        // 追蹤每題的作答狀態
+        const quizStatus = { 1: false, 2: false, 3: false, 4: false };
+
+        /**
+         * 檢查單選、是非、下拉選單的答案
+         * @param {string} qid - 題目 ID
+         * @returns {boolean} - 答案是否正確
+         */
+        function checkSingleAnswer(qid) {
+            let selectedValue;
+            if (qid === '4') {
+                selectedValue = document.querySelector(`select[name="q${qid}"]`).value;
+            } else {
+                const selected = document.querySelector(`input[name="q${qid}"]:checked`);
+                selectedValue = selected ? selected.value : null;
+            }
+            return selectedValue === answers[qid];
+        }
+
+        /**
+         * 檢查填空題的答案
+         * @param {string} qid - 題目 ID
+         * @returns {boolean} - 答案是否正確
+         */
+        function checkTextAnswer(qid) {
+            const input = document.querySelector(`input[name="q${qid}"]`);
+            // 允許填 23.5 或 23.5度，並處理可能的空白
+            const rawValue = input.value.trim().replace('度', '');
+            return rawValue === answers[qid];
+        }
+
+        /**
+         * 處理答案檢查邏輯
+         * @param {string} qid - 題目 ID
+         */
+        function handleCheck(qid) {
+            const block = document.querySelector(`.question-block[data-qid="${qid}"]`);
+            const feedbackDiv = document.getElementById(`feedback${qid}`);
+            const checkBtn = block.querySelector('.btn-check');
+            const retryBtn = block.querySelector('.btn-retry');
+            let isCorrect = false;
+
+            // 根據題型呼叫不同的檢查函式
+            if (qid === '1' || qid === '3' || qid === '4') {
+                isCorrect = checkSingleAnswer(qid);
+            } else if (qid === '2') {
+                isCorrect = checkTextAnswer(qid);
+            }
+
+            // 鎖定所有作答元件
+            block.querySelectorAll('input, select').forEach(input => {
+                input.disabled = true;
+            });
+
+            // 顯示回饋
+            feedbackDiv.style.display = 'block';
+            checkBtn.disabled = true; // 鎖定檢查按鈕
+
+            if (isCorrect) {
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.innerHTML = '✅ **正確！** 恭喜您答對了！';
+                retryBtn.style.display = 'none';
+                quizStatus[qid] = true;
+            } else {
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.innerHTML = '❌ **錯誤！** 答案有誤，請嘗試重做本題。';
+                retryBtn.style.display = 'inline-block';
+                quizStatus[qid] = false;
+            }
+
+            // 檢查是否全部答對以解鎖下一頁
+            checkAllCorrect();
+        }
+
+        /**
+         * 處理重做邏輯
+         * @param {string} qid - 題目 ID
+         */
+        function handleRetry(qid) {
+            const block = document.querySelector(`.question-block[data-qid="${qid}"]`);
+            const feedbackDiv = document.getElementById(`feedback${qid}`);
+            const checkBtn = block.querySelector('.btn-check');
+            const retryBtn = block.querySelector('.btn-retry');
+
+            // 1. 清除所有輸入並解鎖
+            block.querySelectorAll('input, select').forEach(input => {
+                input.checked = false;
+                input.disabled = false;
+                if (input.type === 'text') {
+                    input.value = '';
+                } else if (input.tagName === 'SELECT') {
+                    input.value = '';
+                }
+            });
+
+            // 2. 隱藏回饋區塊和重做按鈕
+            feedbackDiv.style.display = 'none';
+            retryBtn.style.display = 'none';
+
+            // 3. 鎖定檢查按鈕直到重新作答 (避免未作答就點擊)
+            checkBtn.disabled = true; 
+            quizStatus[qid] = false;
+        }
+
+        /**
+         * 檢查所有題目是否都正確，並控制下一頁按鈕
+         */
+        function checkAllCorrect() {
+            const allCorrect = Object.values(quizStatus).every(status => status === true);
+            const nextBtn = document.getElementById('next-page-btn');
+
+            if (allCorrect) {
+                nextBtn.classList.remove('disabled');
+            } else {
+                nextBtn.classList.add('disabled');
+            }
+        }
+
+        /**
+         * 監聽輸入變化，控制檢查按鈕的啟用/禁用狀態
+         */
+        function setupInputListeners() {
+            document.querySelectorAll('.question-block').forEach(block => {
+                const qid = block.dataset.qid;
+                const checkBtn = block.querySelector('.btn-check');
+                
+                // 初始狀態：鎖定
+                checkBtn.disabled = true;
+
+                // 判斷是否已作答
+                const checkCompletion = () => {
+                    // 如果檢查按鈕已經被鎖定 (表示已經提交且結果正確或正在等待重做)，則不作改變
+                    if (checkBtn.disabled === false) return; 
+
+                    let hasAnswer = false;
+                    if (qid === '1' || qid === '3') { // Radio
+                        hasAnswer = Array.from(block.querySelectorAll(`input[name="q${qid}"]`)).some(i => i.checked);
+                    } else if (qid === '2') { // Text
+                        hasAnswer = block.querySelector(`input[name="q${qid}"]`).value.trim() !== '';
+                    } else if (qid === '4') { // Select
+                        hasAnswer = block.querySelector(`select[name="q${qid}"]`).value !== "";
+                    }
+                    
+                    // 只有在作答元件未被禁用 (即未提交或已重做) 且已作答時，才啟用檢查按鈕
+                    if (!block.querySelector('input[type="radio"]:disabled')) {
+                        checkBtn.disabled = !hasAnswer;
+                    }
+                };
+
+                // 綁定 change 和 input 事件
+                block.querySelectorAll('input, select').forEach(input => {
+                    input.addEventListener('change', checkCompletion);
+                    if (input.type === 'text') {
+                        input.addEventListener('input', checkCompletion);
+                    }
+                });
+            });
+        }
+
+        /**
+         * 頁面載入時的初始化
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            // 設定檢查和重做按鈕的事件
+            document.querySelectorAll('.btn-check').forEach(button => {
+                const qid = button.dataset.qid;
+                button.addEventListener('click', () => handleCheck(qid));
+            });
+
+            document.querySelectorAll('.btn-retry').forEach(button => {
+                const qid = button.dataset.qid;
+                button.addEventListener('click', () => handleRetry(qid));
+            });
+
+            // 設定輸入監聽器
+            setupInputListeners();
+
+            // 阻止下一頁按鈕在未解鎖時的導航
+            document.getElementById('next-page-btn').addEventListener('click', function(e) {
+                if (this.classList.contains('disabled')) {
+                    e.preventDefault();
+                    alert('⚠️ 請先完成所有練習題並答對，才能前往下一頁！');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```

@@ -1,0 +1,603 @@
+好的，這是一個符合您所有要求、包含四季變化詳細教學內容（含嘉義太陽仰角數據）及互動練習題的單一網頁 HTML 檔案。
+
+請直接下載以下內容，並將檔名存為 `earth_seasons_learning.html`。
+
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙的浩瀚_學習頁面_地球四季變化</title>
+    <style>
+        /* 全局樣式 */
+        body {
+            font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f7;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 標題樣式 */
+        h1 {
+            color: #0d47a1;
+            text-align: center;
+            border-bottom: 5px solid #42a5f5;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+        h2 {
+            color: #42a5f5;
+            margin-top: 45px;
+            padding-left: 15px;
+            border-left: 6px solid #42a5f5;
+            font-size: 1.6em;
+        }
+
+        /* 關鍵字顏色 */
+        .k1 { color: #c62828; font-weight: bold; } /* 紅色 - 軸傾斜/移動 */
+        .k2 { color: #388e3c; font-weight: bold; } /* 綠色 - 赤道/等長 */
+        .k3 { color: #f9a825; font-weight: bold; } /* 金黃色 - 夏至/北回歸線 */
+        .k4 { color: #1e88e5; font-weight: bold; } /* 藍色 - 冬至/南回歸線 */
+
+        /* 內容區塊和圖片排版 */
+        .lesson-block {
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+        .text-content {
+            margin-bottom: 15px;
+        }
+        
+        .lesson-block ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .lesson-block ul li {
+            background: #e3f2fd;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            border-left: 5px solid #bbdefb;
+        }
+
+        /* 仰角數據強調 */
+        .sun-angle {
+            font-weight: bold;
+            color: #ff5722; /* 橘紅色強調 */
+            background-color: #fff3e0;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        /* 圖片容器樣式 */
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .image-container .image-item {
+            flex-basis: 48%; /* 讓兩張圖一行 */
+            max-width: 48%;
+            min-width: 200px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #bdbdbd;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            min-height: 150px; 
+            background-color: #f0f0f0;
+        }
+        .image-container p {
+            font-size: 0.9em;
+            color: #555;
+            margin: 5px 0 0;
+        }
+
+        /* 練習題樣式 */
+        .quiz-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 3px solid #0d47a1;
+        }
+        .question-block {
+            background-color: #e8eaf6;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .question-block p {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #0d47a1;
+        }
+        .options-group label {
+            display: block;
+            margin: 12px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .options-group label:hover {
+            background-color: #f3f6ff;
+            border-color: #c5cae9;
+        }
+        .options-group input[type="radio"],
+        .options-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .input-group input[type="text"], .input-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+
+        /* 按鈕樣式 */
+        .btn-check, .btn-retry {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .btn-check {
+            background-color: #4db6ac;
+            color: white;
+            font-size: 1em;
+        }
+        .btn-check:disabled {
+            background-color: #b2dfdb;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        .btn-retry {
+            background-color: #ff9800;
+            color: white;
+            display: none; /* 初始隱藏 */
+            margin-left: 10px;
+            font-size: 1em;
+        }
+
+        /* 回饋區塊樣式 */
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* 初始隱藏 */
+            font-size: 1.1em;
+        }
+        .correct {
+            border: 3px solid #4caf50; /* 綠框 */
+            background-color: #e8f5e9; /* 綠底 */
+            color: #4caf50;
+        }
+        .incorrect {
+            border: 3px solid #e53935; /* 紅框 */
+            background-color: #ffebee; /* 紅底 */
+            color: #e53935;
+        }
+
+        /* 導覽列樣式 */
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #0d47a1;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover:not(.disabled) {
+            background-color: #093175;
+        }
+        .nav-btn.disabled {
+            background-color: #bbdefb;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌎 宇宙的浩瀚：地球四季變化學習頁面</h1>
+
+        <div class="lesson-block">
+            <h2>🌍 地球四季</h2>
+            <div class="text-content">
+                <p>
+                    全球<span class="k1">四季變化</span>主要是由地球<span class="k1">地軸傾斜</span>及<span class="k1">公轉</span>造成，
+                    使得不同時期南北半球受陽光照射<span class="k1">角度和時間不同</span>。
+                    地球公轉時，太陽直射點在<span class="k1">赤道</span>與兩<span class="k1">回歸線</span>之間南北移動。
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="lesson-block">
+            <h2>⚖️ 地球四季 - 春分、秋分</h2>
+            <div class="text-content">
+                <p>
+                    <span class="k2">春分</span>（約國曆3/21）、<span class="k2">秋分</span>（約國曆9/23）是太陽直射<span class="k2">赤道</span>的時刻，
+                    太陽位置在黃道與赤道的交點，全球<span class="k2">晝夜幾乎等長</span>、各約12小時。
+                </p>
+                <ul>
+                    <li>太陽直射位置：太陽直射<span class="k2">赤道</span>。</li>
+                    <li>春分日期：通常在國曆3月20日或21日。</li>
+                    <li>秋分日期：通常在國曆9月23日或24日。</li>
+                    <li>全球晝夜：全球各地（除了南北極點）白天和黑夜時間長度幾乎相等 (約<span class="k2">12小時</span>)。</li>
+                    <li>太陽視運動：太陽從<span class="k2">正東方升起，正西方落下</span>。</li>
+                    <li>嘉義(北回歸線)當天中午的太陽仰角：<span class="sun-angle">66.5∘</span>。</li>
+                </ul>
+            </div>
+            <div class="image-container">
+                <div class="image-item">
+                    <img src="8.png" alt="春分秋分地球與太陽相對位置">
+                    <p>圖8：春分秋分地球位置 (檔名: 8.png)</p>
+                </div>
+                <div class="image-item">
+                    <img src="9.png" alt="春分秋分太陽視運動軌跡">
+                    <p>圖9：春分秋分太陽視運動 (檔名: 9.png)</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="lesson-block">
+            <h2>🔆 地球四季 - 夏至</h2>
+            <div class="text-content">
+                <p>
+                    <span class="k3">夏至</span>（約國曆6/21）是<span class="k3">北半球</span>一年中<span class="k3">白天最長、黑夜最短</span>的一天，
+                    太陽直射<span class="k3">北回歸線</span>，導致北半球日照最長、接收熱量最多，
+                    <span class="k3">北極圈內出現極晝</span>，而南半球則相反，正值冬至，南北半球季節相反。
+                </p>
+                <ul>
+                    <li>太陽直射位置：太陽直射<span class="k3">北回歸線</span>（北緯 23.5°）。</li>
+                    <li>日期：約在國曆6月21日或22日。</li>
+                    <li>北半球：<span class="k3">白晝最長</span>，黑夜最短，日照時間達到一年中最大值。</li>
+                    <li>南半球：白晝最短，黑夜最長，正值冬至。</li>
+                    <li>極地：<span class="k3">北極圈</span>（北緯66.5°以北）出現<span class="k3">永晝</span>（太陽不落）。</li>
+                    <li>嘉義(北回歸線)當天中午的太陽仰角：<span class="sun-angle">90∘</span>。</li>
+                </ul>
+            </div>
+            <div class="image-container">
+                <div class="image-item">
+                    <img src="10.png" alt="夏至地球與太陽相對位置">
+                    <p>圖10：夏至地球位置 (檔名: 10.png)</p>
+                </div>
+                <div class="image-item">
+                    <img src="11.png" alt="夏至太陽視運動軌跡">
+                    <p>圖11：夏至太陽視運動 (檔名: 11.png)</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="lesson-block">
+            <h2>❄️ 地球四季 - 冬至</h2>
+            <div class="text-content">
+                <p>
+                    <span class="k4">冬至</span>（約國曆12/21）是<span class="k4">北半球</span>一年中<span class="k4">白晝最短、夜晚最長</span>的一天，
+                    太陽直射<span class="k4">南回歸線</span> (約南緯 23.5°)，導致<span class="k4">北極圈內出現極夜</span>、南極圈內出現極晝。
+                </p>
+                <ul>
+                    <li>太陽直射位置：冬至時，太陽光垂直照射在<span class="k4">南回歸線</span>（南緯 23.5°）上。</li>
+                    <li>日期：通常在陽曆 12 月 21 日或 22 日左右。</li>
+                    <li>北半球：<span class="k4">日照時間最短</span>，夜晚最長。</li>
+                    <li>南半球：日照時間最長，白天最長。</li>
+                    <li>極地：<span class="k4">北極圈</span>（北緯 66.5°以北）陷入<span class="k4">永夜</span>（極夜）。</li>
+                    <li>嘉義(北回歸線)當天中午的太陽仰角：<span class="sun-angle">43∘</span>。</li>
+                </ul>
+            </div>
+            <div class="image-container">
+                <div class="image-item">
+                    <img src="12.png" alt="冬至地球與太陽相對位置">
+                    <p>圖12：冬至地球位置 (檔名: 12.png)</p>
+                </div>
+                <div class="image-item">
+                    <img src="13.png" alt="冬至太陽視運動軌跡">
+                    <p>圖13：冬至太陽視運動 (檔名: 13.png)</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="quiz-section">
+            <h2>🧠 互動練習題</h2>
+            <p>請完成以下所有題目，以解鎖下一頁。</p>
+
+            <div class="question-block" data-qid="1">
+                <p>Q1. 在夏至這一天，位於北回歸線（嘉義）中午的太陽仰角是多少度？</p>
+                <div class="options-group">
+                    <label><input type="radio" name="q1" value="A"> 43∘</label>
+                    <label><input type="radio" name="q1" value="B"> 66.5∘</label>
+                    <label><input type="radio" name="q1" value="C"> 90∘</label>
+                    <label><input type="radio" name="q1" value="D"> 23.5∘</label>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+                <button class="btn-check" data-qid="1">檢查答案</button>
+                <button class="btn-retry" data-qid="1">重做本題</button>
+            </div>
+
+            <div class="question-block" data-qid="2">
+                <p>Q2. 關於「冬至」的敘述，下列哪些是正確的？ (複選題)</p>
+                <div class="options-group">
+                    <label><input type="checkbox" name="q2" value="A"> 北半球日照時間最短。</label>
+                    <label><input type="checkbox" name="q2" value="B"> 太陽直射點位於南回歸線。</label>
+                    <label><input type="checkbox" name="q2" value="C"> 南極圈內出現永夜。</label>
+                    <label><input type="checkbox" name="q2" value="D"> 全球各地晝夜等長。</label>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+                <button class="btn-check" data-qid="2">檢查答案</button>
+                <button class="btn-retry" data-qid="2">重做本題</button>
+            </div>
+
+            <div class="question-block" data-qid="3">
+                <p>Q3. 當太陽直射赤道時，此時的節氣是「春分」或「秋分」，此時全球各地白天和黑夜時間長度約為多少小時？ (請填寫數字)</p>
+                <div class="input-group">
+                    <input type="text" name="q3" placeholder="請填寫數字"> 小時
+                </div>
+                <div class="feedback" id="feedback3"></div>
+                <button class="btn-check" data-qid="3">檢查答案</button>
+                <button class="btn-retry" data-qid="3">重做本題</button>
+            </div>
+
+            <div class="question-block" data-qid="4">
+                <p>Q4. 哪種情況會導致「北極圈出現極夜」？</p>
+                <div class="input-group">
+                    情況發生在：
+                    <select name="q4">
+                        <option value="">請選擇</option>
+                        <option value="A">春分</option>
+                        <option value="B">夏至</option>
+                        <option value="C">秋分</option>
+                        <option value="D">冬至</option>
+                    </select>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+                <button class="btn-check" data-qid="4">檢查答案</button>
+                <button class="btn-retry" data-qid="4">重做本題</button>
+            </div>
+
+        </div>
+
+        <div class="navigation">
+            <a href="2.html" class="nav-btn">← 上一頁</a>
+            <a href="./4.html" class="nav-btn disabled" id="next-page-btn">下一頁 →</a>
+        </div>
+    </div>
+
+    <script>
+        // 題目的正確答案配置
+        const answers = {
+            1: 'C', // Q1: 單選 (夏至直射北回歸線，仰角90度)
+            2: ['A', 'B'], // Q2: 複選 (北半球日照最短, 直射南回歸線)
+            3: ['12'], // Q3: 填空 (12小時)
+            4: 'D' // Q4: 下拉選單 (冬至，北極圈極夜)
+        };
+        // 追蹤每題的作答狀態
+        const quizStatus = { 1: false, 2: false, 3: false, 4: false };
+
+        /**
+         * 檢查單選、下拉選單的答案
+         */
+        function checkSingleAnswer(qid) {
+            let selectedValue;
+            if (qid === '4') {
+                selectedValue = document.querySelector(`select[name="q${qid}"]`).value;
+            } else {
+                const selected = document.querySelector(`input[name="q${qid}"]:checked`);
+                selectedValue = selected ? selected.value : null;
+            }
+            return selectedValue === answers[qid];
+        }
+
+        /**
+         * 檢查複選題的答案
+         */
+        function checkCheckboxAnswer(qid) {
+            const selected = Array.from(document.querySelectorAll(`input[name="q${qid}"]:checked`)).map(cb => cb.value).sort();
+            const correct = answers[qid].sort();
+            // 確保選中的數量和內容都與正確答案相符
+            return selected.length === correct.length && selected.every((value, index) => value === correct[index]);
+        }
+
+        /**
+         * 檢查填空題的答案
+         */
+        function checkTextAnswer(qid) {
+            const input = document.querySelector(`input[name="q${qid}"]`);
+            const rawValue = input.value.trim();
+            // 填空題檢查是否包含在正確答案數組中
+            return answers[qid].includes(rawValue);
+        }
+
+        /**
+         * 處理答案檢查邏輯
+         */
+        function handleCheck(qid) {
+            const block = document.querySelector(`.question-block[data-qid="${qid}"]`);
+            const feedbackDiv = document.getElementById(`feedback${qid}`);
+            const checkBtn = block.querySelector('.btn-check');
+            const retryBtn = block.querySelector('.btn-retry');
+            let isCorrect = false;
+
+            if (qid === '1') {
+                isCorrect = checkSingleAnswer(qid);
+            } else if (qid === '2') {
+                isCorrect = checkCheckboxAnswer(qid);
+            } else if (qid === '3') {
+                isCorrect = checkTextAnswer(qid);
+            } else if (qid === '4') {
+                isCorrect = checkSingleAnswer(qid);
+            }
+
+            // 鎖定所有作答元件
+            block.querySelectorAll('input, select').forEach(input => {
+                input.disabled = true;
+            });
+
+            // 顯示回饋
+            feedbackDiv.style.display = 'block';
+            checkBtn.disabled = true; // 鎖定檢查按鈕
+
+            if (isCorrect) {
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.innerHTML = '✅ **正確！** 恭喜您答對了！';
+                retryBtn.style.display = 'none';
+                quizStatus[qid] = true;
+            } else {
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.innerHTML = '❌ **錯誤！** 答案有誤，請嘗試重做本題。';
+                retryBtn.style.display = 'inline-block';
+                quizStatus[qid] = false;
+            }
+
+            // 檢查是否全部答對以解鎖下一頁
+            checkAllCorrect();
+        }
+
+        /**
+         * 處理重做邏輯
+         */
+        function handleRetry(qid) {
+            const block = document.querySelector(`.question-block[data-qid="${qid}"]`);
+            const feedbackDiv = document.getElementById(`feedback${qid}`);
+            const checkBtn = block.querySelector('.btn-check');
+            const retryBtn = block.querySelector('.btn-retry');
+
+            // 1. 清除所有輸入並解鎖
+            block.querySelectorAll('input, select').forEach(input => {
+                input.checked = false;
+                input.disabled = false;
+                if (input.type === 'text') {
+                    input.value = '';
+                } else if (input.tagName === 'SELECT') {
+                    input.value = '';
+                }
+            });
+
+            // 2. 隱藏回饋區塊和重做按鈕
+            feedbackDiv.style.display = 'none';
+            retryBtn.style.display = 'none';
+
+            // 3. 鎖定檢查按鈕直到重新作答
+            checkBtn.disabled = true; 
+            quizStatus[qid] = false;
+        }
+
+        /**
+         * 檢查所有題目是否都正確，並控制下一頁按鈕
+         */
+        function checkAllCorrect() {
+            const allCorrect = Object.values(quizStatus).every(status => status === true);
+            const nextBtn = document.getElementById('next-page-btn');
+
+            if (allCorrect) {
+                nextBtn.classList.remove('disabled');
+            } else {
+                nextBtn.classList.add('disabled');
+            }
+        }
+
+        /**
+         * 監聽輸入變化，控制檢查按鈕的啟用/禁用狀態
+         */
+        function setupInputListeners() {
+            document.querySelectorAll('.question-block').forEach(block => {
+                const qid = block.dataset.qid;
+                const checkBtn = block.querySelector('.btn-check');
+                
+                checkBtn.disabled = true;
+
+                const checkCompletion = () => {
+                    // 如果作答元件被禁用 (表示已提交答案)，則不改變按鈕狀態
+                    if (block.querySelector('input:disabled') || block.querySelector('select:disabled')) return; 
+
+                    let hasAnswer = false;
+                    if (qid === '1') { // Radio
+                        hasAnswer = Array.from(block.querySelectorAll(`input[name="q${qid}"]`)).some(i => i.checked);
+                    } else if (qid === '2') { // Checkbox
+                        hasAnswer = Array.from(block.querySelectorAll(`input[name="q${qid}"]`)).some(i => i.checked);
+                    } else if (qid === '3') { // Text
+                        hasAnswer = block.querySelector(`input[name="q${qid}"]`).value.trim() !== '';
+                    } else if (qid === '4') { // Select
+                        hasAnswer = block.querySelector(`select[name="q${qid}"]`).value !== "";
+                    }
+                    
+                    checkBtn.disabled = !hasAnswer;
+                };
+
+                // 綁定 change 和 input 事件
+                block.querySelectorAll('input, select').forEach(input => {
+                    input.addEventListener('change', checkCompletion);
+                    if (input.type === 'text') {
+                        input.addEventListener('input', checkCompletion);
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 設定檢查和重做按鈕的事件
+            document.querySelectorAll('.btn-check').forEach(button => {
+                const qid = button.dataset.qid;
+                button.addEventListener('click', () => handleCheck(qid));
+            });
+
+            document.querySelectorAll('.btn-retry').forEach(button => {
+                const qid = button.dataset.qid;
+                button.addEventListener('click', () => handleRetry(qid));
+            });
+
+            // 設定輸入監聽器
+            setupInputListeners();
+
+            // 阻止下一頁按鈕在未解鎖時的導航
+            document.getElementById('next-page-btn').addEventListener('click', function(e) {
+                if (this.classList.contains('disabled')) {
+                    e.preventDefault();
+                    alert('⚠️ 請先完成所有練習題並答對，才能前往下一頁！');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```

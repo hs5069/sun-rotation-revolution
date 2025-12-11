@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙的浩瀚_學習頁面_地球公轉的太陽軌跡與四季變化</title>
+    <style>
+        /* 全局樣式 */
+        body {
+            font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f7; 
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 標題樣式 */
+        h1 {
+            color: #0d47a1;
+            text-align: center;
+            border-bottom: 4px solid #42a5f5;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.3em;
+        }
+        h2 {
+            color: #27ae60;
+            margin-top: 40px;
+            padding-left: 15px;
+            border-left: 6px solid #27ae60;
+            font-size: 1.5em;
+        }
+
+        /* 學生資訊欄位 */
+        .student-info {
+            background-color: #f7fcf9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px dashed #a9d2a9;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .student-info label {
+            margin-right: 15px;
+            font-weight: bold;
+            color: #555;
+            flex-basis: 30%;
+            min-width: 150px;
+            margin-bottom: 10px;
+        }
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+
+        /* 關鍵字顏色 */
+        .k1 { color: #e74c3c; font-weight: bold; } /* 紅色 - 公轉/一年 */
+        .k2 { color: #2980b9; font-weight: bold; } /* 藍色 - 傾斜/角度 */
+        .k3 { color: #f39c12; font-weight: bold; } /* 橘色 - 夏至/最高 */
+        .k4 { color: #8e44ad; font-weight: bold; } /* 紫色 - 冬至/最低 */
+        .k5 { color: #27ae60; font-weight: bold; } /* 綠色 - 春分秋分/等長 */
+
+        /* 內容區塊 */
+        .lesson-block {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 3px solid #d0f0d0;
+        }
+
+        /* 討論問題區 */
+        .discussion-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 3px solid #0d47a1;
+        }
+        .question-item {
+            background-color: #f0f7f0;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 20px;
+        }
+        .question-content {
+            flex: 3;
+        }
+        .question-image {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            text-align: center;
+        }
+        .question-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .question-item h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-top: 0;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 5px;
+        }
+        .guidance {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            border-left: 4px solid #f39c12;
+            background-color: #fffaf0;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #a9d2a9;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        .btn-submit {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            background-color: #27ae60;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:disabled {
+            background-color: #a9d2a9;
+            cursor: not-allowed;
+        }
+        .completion-status {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .completed {
+            color: #27ae60;
+        }
+        
+        /* 回饋區樣式 */
+        .feedback-section {
+            margin-top: 40px;
+            padding: 25px;
+            border-top: 2px dashed #90caf9;
+            background-color: #fbfdff;
+            border-radius: 10px;
+        }
+        .feedback-section h3 {
+            color: #1565c0;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .feedback-question {
+            margin-bottom: 20px;
+        }
+        .feedback-question p {
+            font-weight: bold;
+            color: #333;
+        }
+        .rating-options label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        .rating-options input[type="radio"] {
+            margin-right: 5px;
+        }
+        
+        /* 最終提交按鈕樣式 */
+        .btn-submit-all {
+            padding: 15px 30px;
+            background-color: #2980b9; /* 藍色 */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s, opacity 0.3s;
+            box-shadow: 0 4px #1f648d;
+        }
+        .btn-submit-all:hover:not(:disabled) {
+            background-color: #1f648d;
+        }
+        .btn-submit-all:disabled {
+            background-color: #aeb6bf;
+            cursor: not-allowed;
+            opacity: 0.8;
+            box-shadow: none;
+        }
+
+
+        /* 導覽列樣式 */
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #0d47a1;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover:not(.disabled) {
+            background-color: #093175;
+        }
+        .nav-btn.disabled {
+            background-color: #bbdefb;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌌 宇宙的浩瀚：地球公轉的太陽軌跡與四季變化</h1>
+        
+        <div class="student-info">
+            <label>班級: <input type="text" name="class" required></label>
+            <label>座號: <input type="text" name="seat" required></label>
+            <label>姓名: <input type="text" name="name" required></label>
+        </div>
+        
+        <hr>
+
+        <div class="lesson-block">
+            <h2>運行軌道 - 公轉</h2>
+            <p>
+                地球除了每天自轉之外，還會沿著一條接近圓形的軌道環繞太陽運行，
+                這個運動叫做「<span class="k1">公轉</span>」。地球完成一次公轉大約需時 <span class="k1">一年（365又1/4天）</span>。
+                雖然地球繞太陽的軌道並非正圓，而是稍微拉長的橢圓形，但軌道形狀並不是四季形成的主要原因。
+            </p>
+        </div>
+        
+        <div class="lesson-block">
+            <h2>四季的關鍵 - 地軸傾斜</h2>
+            <p>
+                造成四季變化的<span class="k2">關鍵</span>，是地球 <span class="k2">自轉軸傾斜約 23.5 度</span>，
+                而且這個傾斜方向在公轉過程中大致保持不變。
+                因為<span class="k2">傾斜角度</span>與太陽光照射方向不同，導致一年中太陽在天空中的<span class="k2">高度與路徑會發生改變</span>。
+            </p>
+        </div>
+        
+        <div class="lesson-block">
+            <h2>極端與平衡</h2>
+            <p>
+                在 <span class="k3">夏至</span>時，太陽在中午的位置達到一年中的<span class="k3">最高點</span>，白晝最長；
+                在 <span class="k4">冬至</span>時，太陽高度<span class="k4">最低</span>，白晝最短。
+                <span class="k5">春分與秋分</span> 則是太陽直射赤道，全球白天與黑夜<span class="k5">幾乎一樣長</span>。
+            </p>
+        </div>
+        
+        <div class="lesson-block">
+            <h2>總結</h2>
+            <p>
+                由於太陽光照的<span class="k2">角度、時間與能量變化</span>，地球才會出現 <span class="k5">春、夏、秋、冬</span> 四個季節。
+            </p>
+        </div>
+        
+        <hr>
+
+        <div class="discussion-section">
+            <h2>📝 討論與思考</h2>
+
+            <div class="question-item" data-qid="Q1">
+                <div class="question-content">
+                    <h3>問題 1. 若地球自轉軸不再傾斜，而是完全直立 (0度傾角)，請推測：</h3>
+                    <ol>
+                        <li>全球各地還會有四季嗎？</li>
+                        <li>氣候可能出現什麼變化？</li>
+                    </ol>
+                    <div class="guidance">
+                        **💡 回答方向建議：**
+                        思考地軸直立後，太陽直射點會固定在哪條緯線？這會如何影響不同緯度的日照時間和角度變化？
+                    </div>
+                    <textarea name="ans_Q1" placeholder="請在此輸入您的推測與解釋..."></textarea>
+                    <button class="btn-submit" data-qid="Q1" disabled>完成作答並鎖定</button>
+                    <div class="completion-status" id="status-Q1"></div>
+                </div>
+            </div>
+
+            <div class="question-item" data-qid="Q2">
+                <div class="question-content">
+                    <h3>問題 2. 若你看到一張年長曲線圖，顯示某城市在一年中中午太陽高度的變化形成一條波形曲線。請解釋：</h3>
+                    <p>為什麼曲線會在**夏至**附近達到最高點，在**冬至**最低點？</p>
+                    <div class="guidance">
+                        **💡 回答方向建議：**
+                        請引用「地軸傾斜」和「公轉位置」來解釋太陽高度如何變化，並說明太陽高度與地面接收熱量的關係。
+                    </div>
+                    <textarea name="ans_Q2" placeholder="請在此輸入您的解釋..."></textarea>
+                    <button class="btn-submit" data-qid="Q2" disabled>完成作答並鎖定</button>
+                    <div class="completion-status" id="status-Q2"></div>
+                </div>
+                <div class="question-image">
+                    <img src="14.png" alt="年長曲線圖，顯示一年中中午太陽高度變化">
+                    <p>圖14：中午太陽仰角年變化曲線圖 (檔名: 14.png)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <h2>⭐ 學習回饋與建議</h2>
+
+            <div class="feedback-question" data-fid="F1">
+                <p>回饋1. 這樣的學習方式，你有更了解課程內容嗎？ (1是非常不瞭解，4是非常了解)</p>
+                <div class="rating-options">
+                    <label><input type="radio" name="f1" value="1" required> 1 (非常不瞭解)</label>
+                    <label><input type="radio" name="f1" value="2"> 2 (有點不瞭解)</label>
+                    <label><input type="radio" name="f1" value="3"> 3 (大部分瞭解)</label>
+                    <label><input type="radio" name="f1" value="4"> 4 (非常了解)</label>
+                </div>
+            </div>
+
+            <div class="feedback-question" data-fid="F2">
+                <p>回饋2. 若是用這樣的學習方式，你希望可以再添加什麼內容？</p>
+                <textarea name="f2" placeholder="請填寫您的建議 (可留空)..."></textarea>
+            </div>
+        </div>
+        <hr>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="btn-submit-all" id="submit-final-btn" disabled>提交答案到雲端</button>
+            <div id="submit-message" style="margin-top: 15px; font-weight: bold; min-height: 20px;"></div>
+        </div>
+        <hr>
+
+        <div class="navigation">
+            <a href="3.html" class="nav-btn">← 上一頁</a>
+            <a href="./5.html" class="nav-btn disabled" id="next-page-btn">下一頁 →</a>
+        </div>
+    </div>
+
+    <script>
+        // !! 重要：已替換為您部署 Google Apps Script 後獲得的 Web App URL !!
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzkyZTFWrfVvOMchXu217E8wf6WEJum4lGS5DYO-_D7ZAsIcVq5JdFznIed6QKnC9n7TQ/exec';
+        
+        // 追蹤問題的完成狀態 (必須通過單題提交按鈕鎖定)
+        const quizStatus = { 'Q1': false, 'Q2': false };
+
+        /**
+         * 檢查所有必填欄位、討論問題和回饋1是否完成
+         */
+        function checkAllCompleted() {
+            // 檢查學生資訊欄位
+            const infoInputs = document.querySelectorAll('.student-info input[required]');
+            const infoComplete = Array.from(infoInputs).every(input => input.value.trim() !== '');
+
+            // 檢查討論問題 Q1, Q2 是否鎖定
+            const questionsComplete = quizStatus.Q1 && quizStatus.Q2;
+            
+            // 檢查回饋 F1 是否選取
+            const feedback1Complete = document.querySelector('input[name="f1"]:checked') !== null;
+            
+            // 檢查整體完成狀態 (學生資訊 + 討論題鎖定 + 回饋1選取)
+            const allComplete = infoComplete && questionsComplete && feedback1Complete;
+
+            const submitFinalBtn = document.getElementById('submit-final-btn');
+
+            // 啟用/禁用 提交答案按鈕
+            submitFinalBtn.disabled = !allComplete;
+        }
+
+        /**
+         * 監聽輸入變化，控制按鈕啟用狀態
+         */
+        function setupInputListeners() {
+            // 監聽討論問題的文本輸入
+            document.querySelectorAll('.question-item').forEach(block => {
+                const qid = block.dataset.qid;
+                const textarea = block.querySelector(`textarea[name="ans_${qid}"]`);
+                const submitBtn = block.querySelector(`.btn-submit[data-qid="${qid}"]`);
+                
+                submitBtn.disabled = true;
+
+                textarea.addEventListener('input', () => {
+                    // 檢查是否有足夠的文本 (至少5個字元，且未鎖定)
+                    if (!textarea.disabled) {
+                        submitBtn.disabled = textarea.value.trim().length < 5; 
+                    }
+                });
+            });
+
+            // 監聽學生資訊欄位和回饋 F1 變化
+            document.querySelectorAll('.student-info input, input[name="f1"]').forEach(input => {
+                input.addEventListener('input', checkAllCompleted);
+                input.addEventListener('change', checkAllCompleted);
+            });
+        }
+
+        /**
+         * 處理單題問題提交 (鎖定答案)
+         */
+        function handleSubmit(qid) {
+            const block = document.querySelector(`.question-item[data-qid="${qid}"]`);
+            const textarea = block.querySelector(`textarea[name="ans_${qid}"]`);
+            const submitBtn = block.querySelector(`.btn-submit[data-qid="${qid}"]`);
+            const statusDiv = document.getElementById(`status-${qid}`);
+
+            if (textarea.value.trim().length >= 5) { // 檢查是否滿足最小字元數
+                textarea.disabled = true; // 鎖定文本框
+                submitBtn.disabled = true; // 鎖定提交按鈕
+                statusDiv.innerHTML = '✅ **已完成作答並鎖定**';
+                statusDiv.classList.add('completed');
+                quizStatus[qid] = true;
+            } else {
+                statusDiv.innerHTML = '請輸入至少 5 個字元的答案。';
+                statusDiv.classList.remove('completed');
+                quizStatus[qid] = false;
+            }
+
+            checkAllCompleted(); 
+        }
+        
+        /**
+         * 處理最終提交 (上傳至 Apps Script)
+         */
+        function submitToCloud() {
+            const submitFinalBtn = document.getElementById('submit-final-btn');
+            const submitMessageDiv = document.getElementById('submit-message');
+            const nextBtn = document.getElementById('next-page-btn');
+
+            // 鎖定按鈕防止重複點擊
+            submitFinalBtn.disabled = true;
+            submitMessageDiv.innerHTML = '📤 **正在提交，請稍候...**';
+            submitMessageDiv.style.color = '#e67e22';
+            nextBtn.classList.add('disabled'); // 提交中，下一頁鎖定
+
+            // 收集所有數據 (包括回饋 F1, F2)
+            const data = {};
+            data.class = document.querySelector('input[name="class"]').value.trim();
+            data.seat = document.querySelector('input[name="seat"]').value.trim();
+            data.name = document.querySelector('input[name="name"]').value.trim();
+            data.ans_Q1 = document.querySelector('textarea[name="ans_Q1"]').value.trim();
+            data.ans_Q2 = document.querySelector('textarea[name="ans_Q2"]').value.trim();
+            data.f1 = document.querySelector('input[name="f1"]:checked') ? document.querySelector('input[name="f1"]:checked').value : '';
+            data.f2 = document.querySelector('textarea[name="f2"]').value.trim(); // 回饋2可留空
+
+            // 使用 FormData 準備發送
+            const formData = new FormData();
+            for (const key in data) {
+                formData.append(key, data[key]);
+            }
+
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.result === 'success') {
+                    submitMessageDiv.innerHTML = '🎉 **提交成功！** 資料已安全上傳到雲端試算表。';
+                    submitMessageDiv.style.color = '#27ae60';
+                    // 解鎖下一頁按鈕
+                    nextBtn.classList.remove('disabled');
+                } else {
+                    submitMessageDiv.innerHTML = `❌ **提交失敗！** 錯誤：${result.message}。請檢查網路或聯繫管理員。`;
+                    submitMessageDiv.style.color = '#e74c3c';
+                    submitFinalBtn.disabled = false; // 允許重試
+                }
+            })
+            .catch(error => {
+                submitMessageDiv.innerHTML = `❌ **連線錯誤！** 無法連接到服務。${error.message}。請檢查網路。`;
+                submitMessageDiv.style.color = '#e74c3c';
+                submitFinalBtn.disabled = false; // 允許重試
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 設定單題提交按鈕的事件 (鎖定單題作答)
+            document.querySelectorAll('.btn-submit[data-qid]').forEach(button => {
+                const qid = button.dataset.qid;
+                button.addEventListener('click', () => handleSubmit(qid));
+            });
+            
+            // 設定最終提交按鈕的事件 (上傳至雲端)
+            document.getElementById('submit-final-btn').addEventListener('click', submitToCloud);
+
+
+            // 設定輸入監聽器
+            setupInputListeners();
+            
+            // 初始檢查
+            checkAllCompleted();
+
+            // 阻止下一頁按鈕在未解鎖時的導航
+            document.getElementById('next-page-btn').addEventListener('click', function(e) {
+                if (this.classList.contains('disabled')) {
+                    e.preventDefault();
+                    alert('⚠️ 請先點擊「提交答案到雲端」按鈕並確認成功後，才能前往下一頁！');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
